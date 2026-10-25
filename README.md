@@ -2,20 +2,20 @@
 
 Apache Spark (PySpark) kullanarak öğrenci akademik performansıyla ilişkili faktörleri büyük veri yaklaşımıyla analiz ettiğim bir veri analizi projesidir.
 
-Projede tanımlayıcı istatistikler, Pearson korelasyon analizi ve K-Means kümeleme kullanılarak öğrencilerin akademik başarıları ve davranışsal özellikleri incelenmiştir.
+Projede tanımlayıcı istatistikler, Pearson korelasyon analizi ve K-Means kümeleme kullanılarak akademik başarı ile davranışsal özellikler arasındaki ilişkiler incelenmiştir.
 
 ## Veri Seti
 
-Projede kullanılan `Student Academic Performance` veri seti ders kapsamında öğretim elemanı tarafından sağlanmıştır ve 250 öğrenci kaydından oluşmaktadır.
+Projede kullanılan `Student Academic Performance` veri seti ders kapsamında öğretim elemanı tarafından sağlanmıştır ve **250 kayıttan** oluşmaktadır.
 
-Apache Spark ile ölçeklenebilir veri işleme yaklaşımını uygulamak amacıyla veri seti **çoğaltma (replication)** yöntemiyle 100.000 kayda ölçeklendirilmiştir.
+Apache Spark ile ölçeklenebilir veri işleme yaklaşımını uygulamak amacıyla veri seti **çoğaltma (replication)** yöntemiyle **100.000 satıra** ölçeklendirilmiştir.
 
-> Analizde kullanılan 100.000 kayıt, orijinal 250 kaydın tekrarlarından oluşmaktadır; yeni veya benzersiz öğrenci verisi üretilmemiştir.
+> Analizde kullanılan 100.000 satır, orijinal 250 kaydın tekrarlarından oluşmaktadır; yeni veya benzersiz öğrenci verisi üretilmemiştir.
 
 ## Uygulanan Analizler
 
 - Apache Spark (PySpark) ile veri işleme
-- 250 kaydın 100.000 kayda ölçeklendirilmesi
+- 250 kaydın replication yöntemiyle 100.000 satıra ölçeklendirilmesi
 - Tanımlayıcı istatistikler
 - Pearson korelasyon analizi
 - Korelasyon matrisi ve heatmap görselleştirmesi
@@ -24,10 +24,11 @@ Apache Spark ile ölçeklenebilir veri işleme yaklaşımını uygulamak amacıy
 
 ## Öne Çıkan Bulgular
 
-- GPA ile en güçlü doğrusal ilişkiler `Final_Score` (**r = 0.77**) ve `Midterm_Score` (**r = 0.59**) değişkenlerinde görüldü.
-- Günlük çalışma süresi, derse devam oranı ve uyku süresi GPA ile güçlü doğrusal ilişkiler göstermedi.
-- K-Means analiziyle derse devam, uyku ve günlük çalışma süresine göre üç farklı davranışsal öğrenci profili oluşturuldu.
-- Profillerin GPA ortalamaları birbirine yakın olmakla birlikte en yüksek devam ve çalışma değerlerine sahip profilin GPA ortalaması **7.33** olarak elde edildi.
+- GPA ile en güçlü pozitif doğrusal ilişkiler `Final_Score` (**r = 0.77**) ve `Midterm_Score` (**r = 0.59**) değişkenlerinde görüldü.
+- Stres seviyesi ile GPA arasında **r = -0.18** düzeyinde negatif ilişki gözlemlendi.
+- K-Means analizinde `Attendance_%`, `Sleep_Hours` ve `Study_Hours_per_Day` değişkenleri kullanılarak üç farklı davranışsal profil oluşturuldu.
+- GPA kümeleme girdisi olarak kullanılmadı; oluşturulan profillerin akademik performanslarını karşılaştırmak amacıyla sonradan değerlendirildi.
+- En yüksek ortalama GPA, **7.33/10** ile dengeli ve yüksek çalışma düzeyine sahip profilde gözlemlendi.
 
 ## Kullanılan Teknolojiler
 
@@ -35,5 +36,6 @@ Apache Spark ile ölçeklenebilir veri işleme yaklaşımını uygulamak amacıy
 
 ## Dosyalar
 
+- [`student_academic_performance.csv`](./student_academic_performance.csv) — Projede kullanılan 250 kayıtlık temel veri seti
 - [`student_performance_analysis.py`](./student_performance_analysis.py) — Analizin çalıştırılabilir PySpark kodu
 - [`Apache_Spark_Ogrenci_Performans_Analizi.pdf`](./Apache_Spark_Ogrenci_Performans_Analizi.pdf) — Projenin detaylı raporu
